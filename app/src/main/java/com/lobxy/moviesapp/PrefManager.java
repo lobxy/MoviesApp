@@ -1,5 +1,5 @@
 package com.lobxy.moviesapp;
 
-public class SharedPreferences {
+public class PrefManager {
 
 }

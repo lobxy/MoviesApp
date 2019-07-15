@@ -4,16 +4,16 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.lobxy.moviesapp.Model.TopRated;
-import com.lobxy.moviesapp.Model.TopRatedResult;
+import com.lobxy.moviesapp.Model.MoviesData;
+import com.lobxy.moviesapp.Model.MoviesDataResults;
 import com.lobxy.moviesapp.R;
-import com.lobxy.moviesapp.RecyclerView.CustomAdapter;
+import com.lobxy.moviesapp.Adapters.CustomRecyclerViewAdapter;
 import com.lobxy.moviesapp.Retrofit.RetrofitClientInstance;
 import com.lobxy.moviesapp.Retrofit.RetrofitServices;
 
@@ -47,15 +47,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getData() {
+
         RetrofitClientInstance instance = RetrofitServices.getRetrofitInstance().create(RetrofitClientInstance.class);
-        Call<TopRated> call = instance.getTopRatedMovies(API_KEY);
-        call.enqueue(new Callback<TopRated>() {
+        Call<MoviesData> call = instance.getTopRatedMovies(API_KEY);
+        call.enqueue(new Callback<MoviesData>() {
             @Override
-            public void onResponse(Call<TopRated> call, Response<TopRated> response) {
+            public void onResponse(Call<MoviesData> call, Response<MoviesData> response) {
 
                 if (response.code() == 200) {
                     //get list of TopRatedResult for recyclerView and initialize adapter.
-                    List<TopRatedResult> list = response.body().getTopRatedResults();
+                    List<MoviesDataResults> list = response.body().getMoviesDataResults();
                     setRecyclerView(list);
 
                 } else if (response.code() == 401) {
@@ -63,21 +64,22 @@ public class MainActivity extends AppCompatActivity {
                 } else if (response.code() == 404) {
                     Toast.makeText(MainActivity.this, "Content not available", Toast.LENGTH_SHORT).show();
                 } else {
+                    Toast.makeText(MainActivity.this, "Internal error", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onResponse: API Error code not found");
                 }
 
             }
 
             @Override
-            public void onFailure(Call<TopRated> call, Throwable t) {
+            public void onFailure(Call<MoviesData> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Request Failed", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "retrofit call failure cause: " + t.getMessage());
             }
         });
     }
 
-    private void setRecyclerView(List<TopRatedResult> list) {
-        CustomAdapter adapter = new CustomAdapter(list);
+    private void setRecyclerView(List<MoviesDataResults> list) {
+        CustomRecyclerViewAdapter adapter = new CustomRecyclerViewAdapter(this, list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }

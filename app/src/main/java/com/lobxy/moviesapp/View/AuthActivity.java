@@ -1,15 +1,18 @@
 package com.lobxy.moviesapp.View;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.lobxy.moviesapp.R;
+import com.lobxy.moviesapp.Room.UsersRepository;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,6 +24,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     private TextInputEditText input_edit_password;
 
     private ProgressBar progressBar;
+
 
     private Button btn_trigger_login;
     private Button btn_trigger_register;
@@ -104,10 +108,24 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void registerUser() {
+        UsersRepository usersRepository = new UsersRepository(this);
+        boolean result = usersRepository.userExists(mUsername);
 
+        if (!result) {
+            usersRepository.addUser(mUsername, mPassword);
+        } else {
+            Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loginUser() {
-
+        UsersRepository repository = new UsersRepository(this);
+        boolean result = repository.loginUser(mUsername, mPassword);
+        if (result) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        } else {
+            Log.i(TAG, "loginUser: error occurred");
+        }
     }
 }
