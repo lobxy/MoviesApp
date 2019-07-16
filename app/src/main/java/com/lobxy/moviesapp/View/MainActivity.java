@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 import com.lobxy.moviesapp.Model.MoviesData;
 import com.lobxy.moviesapp.Model.MoviesDataResults;
 import com.lobxy.moviesapp.R;
-import com.lobxy.moviesapp.Adapters.CustomRecyclerViewAdapter;
 import com.lobxy.moviesapp.Retrofit.RetrofitClientInstance;
 import com.lobxy.moviesapp.Retrofit.RetrofitServices;
 
@@ -79,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setRecyclerView(List<MoviesDataResults> list) {
-        CustomRecyclerViewAdapter adapter = new CustomRecyclerViewAdapter(this, list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+//        CustomRecyclerViewAdapter adapter = new CustomRecyclerViewAdapter(this, list);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setAdapter(adapter);
     }
 
     private boolean connectivity() {
