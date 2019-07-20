@@ -5,7 +5,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lobxy.moviesapp.Model.MoviesDataResults;
+import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
 
 public class DetailActivity extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class DetailActivity extends AppCompatActivity {
     private void getPassedData() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            MoviesDataResults moviesData = (MoviesDataResults) bundle.getSerializable("MovieDetails");
+            MoviesCollectionDetails moviesData = (MoviesCollectionDetails) bundle.getSerializable("MovieDetails");
 
             //set data to the views.
 

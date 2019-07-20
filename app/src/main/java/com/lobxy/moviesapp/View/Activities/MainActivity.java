@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.lobxy.moviesapp.Model.MoviesData;
-import com.lobxy.moviesapp.Model.MoviesDataResults;
+import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionData;
+import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.Retrofit.RetrofitClientInstance;
 import com.lobxy.moviesapp.Retrofit.RetrofitServices;
@@ -47,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
     private void getData() {
 
         RetrofitClientInstance instance = RetrofitServices.getRetrofitInstance().create(RetrofitClientInstance.class);
-        Call<MoviesData> call = instance.getTopRatedMovies(API_KEY);
-        call.enqueue(new Callback<MoviesData>() {
+        Call<MoviesCollectionData> call = instance.getTopRatedMovies(API_KEY);
+        call.enqueue(new Callback<MoviesCollectionData>() {
             @Override
-            public void onResponse(Call<MoviesData> call, Response<MoviesData> response) {
+            public void onResponse(Call<MoviesCollectionData> call, Response<MoviesCollectionData> response) {
 
                 if (response.code() == 200) {
                     //get list of TopRatedResult for recyclerView and initialize adapter.
-                    List<MoviesDataResults> list = response.body().getMoviesDataResults();
+                    List<MoviesCollectionDetails> list = response.body().getMoviesDataResults();
                     setRecyclerView(list);
 
                 } else if (response.code() == 401) {
@@ -69,14 +69,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<MoviesData> call, Throwable t) {
+            public void onFailure(Call<MoviesCollectionData> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Request Failed", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "retrofit call failure cause: " + t.getMessage());
             }
         });
     }
 
-    private void setRecyclerView(List<MoviesDataResults> list) {
+    private void setRecyclerView(List<MoviesCollectionDetails> list) {
 //        CustomRecyclerViewAdapter adapter = new CustomRecyclerViewAdapter(this, list);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setAdapter(adapter);

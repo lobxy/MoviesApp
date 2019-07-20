@@ -11,21 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.lobxy.moviesapp.Model.MoviesDataResults;
+import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
 
 import java.util.List;
 
 public class CustomGridRecyclerViewAdapter extends RecyclerView.Adapter<CustomGridRecyclerViewAdapter.CustomViewHolder> {
-    private List<MoviesDataResults> moviesDataResultsList;
+    private List<MoviesCollectionDetails> moviesCollectionDetailsList;
 
     private Context context;
 
     private OnGridRVItemClickListener recyclerviewItemClickListener;
 
-    public CustomGridRecyclerViewAdapter(Context context, List<MoviesDataResults> moviesDataResultsList, OnGridRVItemClickListener listener) {
+    public CustomGridRecyclerViewAdapter(Context context, List<MoviesCollectionDetails> moviesCollectionDetailsList, OnGridRVItemClickListener listener) {
         this.context = context;
-        this.moviesDataResultsList = moviesDataResultsList;
+        this.moviesCollectionDetailsList = moviesCollectionDetailsList;
         this.recyclerviewItemClickListener = listener;
     }
 
@@ -39,10 +39,10 @@ public class CustomGridRecyclerViewAdapter extends RecyclerView.Adapter<CustomGr
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.text_title.setText(moviesDataResultsList.get(position).getTitle());
+        holder.text_title.setText(moviesCollectionDetailsList.get(position).getTitle());
 
         //add poster image url into imageUrl.
-        String image_url = "https://image.tmdb.org/t/p/original/" + moviesDataResultsList.get(position).getPosterPath();
+        String image_url = "https://image.tmdb.org/t/p/original/" + moviesCollectionDetailsList.get(position).getPosterPath();
 
         //show it to user.
         Glide.with(context).load(image_url).into(holder.imageView);
@@ -50,7 +50,7 @@ public class CustomGridRecyclerViewAdapter extends RecyclerView.Adapter<CustomGr
 
     @Override
     public int getItemCount() {
-        return moviesDataResultsList.size();
+        return moviesCollectionDetailsList.size();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
