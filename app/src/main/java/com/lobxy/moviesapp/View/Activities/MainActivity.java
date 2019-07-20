@@ -1,4 +1,4 @@
-package com.lobxy.moviesapp.View;
+package com.lobxy.moviesapp.View.Activities;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

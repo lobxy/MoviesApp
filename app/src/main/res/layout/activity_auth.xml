@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".View.AuthActivity">
+    tools:context=".View.Activities.AuthActivity">
 
     <ProgressBar
         android:id="@+id/auth_progress_bar"

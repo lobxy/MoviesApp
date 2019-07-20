@@ -1,4 +1,4 @@
-package com.lobxy.moviesapp.View;
+package com.lobxy.moviesapp.View.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
