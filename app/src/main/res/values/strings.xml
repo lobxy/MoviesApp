@@ -1,4 +1,5 @@
 <resources>
+    <string name="API_KEY">fb5216125b473827f4adeba21d6042c3</string>
     <string name="app_name">Movies App</string>
     <string name="title_activity_home">HomeActivity</string>
 

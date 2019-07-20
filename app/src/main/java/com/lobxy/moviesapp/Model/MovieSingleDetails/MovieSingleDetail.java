@@ -80,7 +80,7 @@ public class MovieSingleDetail {
     private Boolean video;
     @SerializedName("vote_average")
     @Expose
-    private Integer voteAverage;
+    private double voteAverage;
     @SerializedName("vote_count")
     @Expose
     private Integer voteCount;
@@ -278,11 +278,11 @@ public class MovieSingleDetail {
         this.video = video;
     }
 
-    public Integer getVoteAverage() {
+    public Double getVoteAverage() {
         return voteAverage;
     }
 
-    public void setVoteAverage(Integer voteAverage) {
+    public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
     }
 

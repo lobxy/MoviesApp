@@ -20,6 +20,6 @@ public interface RetrofitClientInstance {
     Call<MoviesCollectionData> getPopularMovies(@Query("api_key") String api_key);
 
     @GET("movie/{id}")
-    Call<MovieSingleDetail> getMovieDetails(@Path("id") String id, @Query("api_key") String api_key, @Query("append_to_response") String filters);
+    Call<MovieSingleDetail> getMovieDetails(@Path("id") int id, @Query("api_key") String api_key, @Query("append_to_response") String filters);
 
 }
