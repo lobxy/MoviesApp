@@ -57,6 +57,7 @@ public class DetailActivity extends AppCompatActivity {
     private void getPassedData() {
         int movieId = getIntent().getIntExtra("MovieId", 0);
         if (movieId != 0) {
+
             //get movie details.
             RetrofitClientInstance clientInstance = RetrofitServices.getRetrofitInstance().create(RetrofitClientInstance.class);
             Call<MovieSingleDetail> call = clientInstance.getMovieDetails(movieId, getResources().getString(R.string.API_KEY), "images,credits,similar");
@@ -123,6 +124,7 @@ public class DetailActivity extends AppCompatActivity {
         moviesRecyclerView.setLayoutManager(linearLayoutManager);
         SimilarMoviesRecyclerViewListAdapter adapter = new SimilarMoviesRecyclerViewListAdapter(this, similarMoviesList);
         moviesRecyclerView.setAdapter(adapter);
+
         if (adapter.getItemCount() == 0) {
             Toast.makeText(this, "Movies not available", Toast.LENGTH_SHORT).show();
         } else {

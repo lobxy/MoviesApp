@@ -36,10 +36,17 @@ public class SimilarMoviesRecyclerViewListAdapter extends RecyclerView.Adapter<S
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         //add poster image url into imageUrl.
-        String image_url = "https://image.tmdb.org/t/p/original/" + moviesList.get(position).getPosterPath();
 
-        //show it to user.
-        Glide.with(context).load(image_url).into(holder.imageView);
+        String moviesPosterPath = moviesList.get(position).getPosterPath();
+
+        if (moviesPosterPath != null && !moviesPosterPath.isEmpty()) {
+            String image_url = "https://image.tmdb.org/t/p/original/" + moviesPosterPath;
+            //show it to user.
+            Glide.with(context).load(image_url).into(holder.imageView);
+        } else {
+            holder.imageView.setImageResource(R.drawable.ic_movie_placeholder);
+        }
+
     }
 
     @Override

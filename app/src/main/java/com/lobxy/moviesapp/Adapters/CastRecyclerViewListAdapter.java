@@ -39,15 +39,23 @@ public class CastRecyclerViewListAdapter extends RecyclerView.Adapter<CastRecycl
         holder.text_character_name.setText(castList.get(position).getCharacter());
         holder.text_person_name.setText(castList.get(position).getName());
 
-        //Set image here.
-        String url = "https://image.tmdb.org/t/p/original/" + castList.get(position).getProfilePath();
+        String profilePath = castList.get(position).getProfilePath();
 
-        Glide.with(context).load(url).into(holder.imageView);
+        if (profilePath != null && !profilePath.isEmpty()) {
+            //Set image here.
+            String url = "https://image.tmdb.org/t/p/original/" + profilePath;
+            Glide.with(context).load(url).into(holder.imageView);
+        } else {
+            holder.imageView.setImageResource(R.drawable.ic_person_placeholder);
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        if (castList.size() > 10)
+            return 10;
+        else return castList.size();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
