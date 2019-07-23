@@ -1,7 +1,7 @@
 package com.lobxy.moviesapp.Retrofit;
 
-import com.lobxy.moviesapp.Model.MovieSingleDetails.MovieSingleDetail;
-import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionData;
+import com.lobxy.moviesapp.View.Detail.Model.MovieSingleDetail;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionData;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -17,7 +17,7 @@ public interface RetrofitClientInstance {
     Call<MoviesCollectionData> getUpcomingMovies(@Query("api_key") String api_key);
 
     @GET("movie/popular")
-    Call<MoviesCollectionData> getPopularMovies(@Query("api_key") String api_key);
+    Call<MoviesCollectionData> getPopularMovies(@Query("api_key") String api_key, @Query("page") int pageNumber);
 
     @GET("movie/{id}")
     Call<MovieSingleDetail> getMovieDetails(@Path("id") int id, @Query("api_key") String api_key, @Query("append_to_response") String filters);

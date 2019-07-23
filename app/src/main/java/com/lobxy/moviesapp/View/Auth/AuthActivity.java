@@ -1,18 +1,20 @@
-package com.lobxy.moviesapp.View.Activities;
+package com.lobxy.moviesapp.View.Auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.Room.UsersRepository;
+import com.lobxy.moviesapp.View.Home.HomeActivity;
 
 public class AuthActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -122,7 +124,7 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
         UsersRepository repository = new UsersRepository(this);
         boolean result = repository.loginUser(mUsername, mPassword);
         if (result) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, HomeActivity.class));
             finish();
         } else {
             Log.i(TAG, "loginUser: error occurred");

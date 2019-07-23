@@ -1,5 +1,4 @@
-
-package com.lobxy.moviesapp.Model.MovieSingleDetails;
+package com.lobxy.moviesapp.View.Detail.Model;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

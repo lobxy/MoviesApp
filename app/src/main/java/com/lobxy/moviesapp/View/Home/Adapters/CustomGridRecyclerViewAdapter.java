@@ -1,4 +1,4 @@
-package com.lobxy.moviesapp.Adapters;
+package com.lobxy.moviesapp.View.Home.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionDetails;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class CustomGridRecyclerViewAdapter extends RecyclerView.Adapter<CustomGr
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_grid_item, parent, false);
+                .inflate(R.layout.grid_item_recyclerview_home, parent, false);
         return new CustomViewHolder(view, recyclerviewItemClickListener);
     }
 

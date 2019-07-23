@@ -1,9 +1,8 @@
-
-package com.lobxy.moviesapp.Model.MovieSingleDetails;
+package com.lobxy.moviesapp.View.Detail.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionData;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionData;
 
 import java.util.List;
 

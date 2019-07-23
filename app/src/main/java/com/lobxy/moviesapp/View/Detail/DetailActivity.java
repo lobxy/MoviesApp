@@ -1,4 +1,4 @@
-package com.lobxy.moviesapp.View.Activities;
+package com.lobxy.moviesapp.View.Detail;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,16 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.lobxy.moviesapp.Adapters.CastRecyclerViewListAdapter;
-import com.lobxy.moviesapp.Adapters.BackdropRecyclerViewAdapter;
-import com.lobxy.moviesapp.Adapters.SimilarMoviesRecyclerViewListAdapter;
-import com.lobxy.moviesapp.Model.MovieSingleDetails.Backdrop;
-import com.lobxy.moviesapp.Model.MovieSingleDetails.Cast;
-import com.lobxy.moviesapp.Model.MovieSingleDetails.MovieSingleDetail;
-import com.lobxy.moviesapp.Model.MoviesCollectionDetail.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.Retrofit.RetrofitClientInstance;
 import com.lobxy.moviesapp.Retrofit.RetrofitServices;
+import com.lobxy.moviesapp.View.Detail.Adapters.BackdropRecyclerViewAdapter;
+import com.lobxy.moviesapp.View.Detail.Adapters.CastRecyclerViewListAdapter;
+import com.lobxy.moviesapp.View.Detail.Adapters.SimilarMoviesRecyclerViewListAdapter;
+import com.lobxy.moviesapp.View.Detail.Model.Backdrop;
+import com.lobxy.moviesapp.View.Detail.Model.Cast;
+import com.lobxy.moviesapp.View.Detail.Model.MovieSingleDetail;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
 
 import java.util.List;
 
@@ -49,8 +49,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView text_runtime;
     private TextView text_genre;
 
-
-    ProgressDialog dialog;
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

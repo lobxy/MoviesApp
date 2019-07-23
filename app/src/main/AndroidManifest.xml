@@ -12,9 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.Activities.TypeActivity"></activity>
         <activity
-            android:name=".View.Activities.HomeActivity"
+            android:name=".View.Home.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Activities.DetailActivity" />
-        <activity android:name=".View.Activities.AuthActivity" />
-        <activity android:name=".View.Activities.MainActivity" />
+        <activity android:name=".View.Detail.DetailActivity" />
+        <activity android:name=".View.Auth.AuthActivity" />
     </application>
 
 </manifest>

@@ -1,10 +1,9 @@
-
-package com.lobxy.moviesapp.Model.MovieSingleDetails;
+package com.lobxy.moviesapp.View.Detail.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Backdrop {
+public class Poster {
 
     @SerializedName("aspect_ratio")
     @Expose
