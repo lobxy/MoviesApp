@@ -25,6 +25,7 @@ import com.lobxy.moviesapp.View.Detail.DetailActivity;
 import com.lobxy.moviesapp.View.Home.Adapters.CustomGridRecyclerViewAdapter;
 import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionData;
 import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
+import com.lobxy.moviesapp.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,6 @@ public class fragment_popular extends Fragment implements CustomGridRecyclerView
     public fragment_popular() {
     }
 
-    private static final String API_KEY = "fb5216125b473827f4adeba21d6042c3";
 
     private RecyclerView recyclerView;
 
@@ -83,7 +83,7 @@ public class fragment_popular extends Fragment implements CustomGridRecyclerView
         Log.i(TAG, "problem: Page Count: " + pageCount);
 
         RetrofitClientInstance instance = RetrofitServices.getRetrofitInstance().create(RetrofitClientInstance.class);
-        Call<MoviesCollectionData> call = instance.getPopularMovies(API_KEY, pageCount);
+        Call<MoviesCollectionData> call = instance.getPopularMovies(CommonUtils.APP_KEY, pageCount);
         call.enqueue(new Callback<MoviesCollectionData>() {
             @Override
             public void onResponse(Call<MoviesCollectionData> call, Response<MoviesCollectionData> response) {
@@ -163,5 +163,10 @@ public class fragment_popular extends Fragment implements CustomGridRecyclerView
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("MovieId", object.getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+        Toast.makeText(getActivity(), list.get(position).getTitle(), Toast.LENGTH_SHORT).show();
     }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.View.Detail.Model.Cast;
+import com.lobxy.moviesapp.utils.CommonUtils;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class CastRecyclerViewListAdapter extends RecyclerView.Adapter<CastRecycl
 
         if (profilePath != null && !profilePath.isEmpty()) {
             //Set image here.
-            String url = "https://image.tmdb.org/t/p/original/" + profilePath;
+            String url = CommonUtils.IMAGE_URL + profilePath;
             Glide.with(context).load(url).into(holder.imageView);
         } else {
             holder.imageView.setImageResource(R.drawable.ic_person_placeholder);

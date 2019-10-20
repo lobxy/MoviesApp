@@ -16,13 +16,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lobxy.moviesapp.View.Home.Adapters.CustomLinearRecyclerViewAdapter;
-import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionData;
-import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.Retrofit.RetrofitClientInstance;
 import com.lobxy.moviesapp.Retrofit.RetrofitServices;
 import com.lobxy.moviesapp.View.Detail.DetailActivity;
+import com.lobxy.moviesapp.View.Home.Adapters.CustomLinearRecyclerViewAdapter;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionData;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
+import com.lobxy.moviesapp.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class fragment_top_rated extends Fragment implements CustomLinearRecyclerViewAdapter.OnRecyclerViewItemClickListener {
 
-    private static final String API_KEY = "fb5216125b473827f4adeba21d6042c3";
     private RecyclerView recyclerView;
 
     private List<MoviesCollectionDetails> moviesCollectionDetailsList = new ArrayList<>();
@@ -63,7 +63,7 @@ public class fragment_top_rated extends Fragment implements CustomLinearRecycler
 
     private void getData() {
         RetrofitClientInstance instance = RetrofitServices.getRetrofitInstance().create(RetrofitClientInstance.class);
-        Call<MoviesCollectionData> call = instance.getTopRatedMovies(API_KEY);
+        Call<MoviesCollectionData> call = instance.getTopRatedMovies(CommonUtils.APP_KEY);
         call.enqueue(new Callback<MoviesCollectionData>() {
             @Override
             public void onResponse(Call<MoviesCollectionData> call, Response<MoviesCollectionData> response) {

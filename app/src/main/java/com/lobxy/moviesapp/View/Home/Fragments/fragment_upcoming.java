@@ -15,13 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lobxy.moviesapp.View.Home.Adapters.CustomGridRecyclerViewAdapter;
-import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionData;
-import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.Retrofit.RetrofitClientInstance;
 import com.lobxy.moviesapp.Retrofit.RetrofitServices;
 import com.lobxy.moviesapp.View.Detail.DetailActivity;
+import com.lobxy.moviesapp.View.Home.Adapters.CustomGridRecyclerViewAdapter;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionData;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
+import com.lobxy.moviesapp.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class fragment_upcoming extends Fragment implements CustomGridRecyclerViewAdapter.OnGridRVItemClickListener {
 
-    private static final String API_KEY = "fb5216125b473827f4adeba21d6042c3";
     private RecyclerView recyclerView;
 
     private List<MoviesCollectionDetails> moviesCollectionDetailsList = new ArrayList<>();
@@ -61,7 +61,7 @@ public class fragment_upcoming extends Fragment implements CustomGridRecyclerVie
 
     private void getData() {
         RetrofitClientInstance instance = RetrofitServices.getRetrofitInstance().create(RetrofitClientInstance.class);
-        Call<MoviesCollectionData> call = instance.getUpcomingMovies(API_KEY);
+        Call<MoviesCollectionData> call = instance.getUpcomingMovies(CommonUtils.APP_KEY);
         call.enqueue(new Callback<MoviesCollectionData>() {
             @Override
             public void onResponse(Call<MoviesCollectionData> call, Response<MoviesCollectionData> response) {
@@ -109,5 +109,10 @@ public class fragment_upcoming extends Fragment implements CustomGridRecyclerVie
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("MovieId", object.getId());
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemLongClick(int position) {
+        Toast.makeText(getActivity(), moviesCollectionDetailsList.get(position).getTitle(), Toast.LENGTH_SHORT).show();
     }
 }

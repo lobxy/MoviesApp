@@ -11,8 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
 import com.lobxy.moviesapp.R;
+import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
+import com.lobxy.moviesapp.utils.CommonUtils;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class CustomLinearRecyclerViewAdapter extends RecyclerView.Adapter<Custom
 
     private Context context;
 
-    OnRecyclerViewItemClickListener recyclerviewItemClickListener;
+    private OnRecyclerViewItemClickListener recyclerviewItemClickListener;
 
     public CustomLinearRecyclerViewAdapter(Context context, List<MoviesCollectionDetails> moviesCollectionDetailsList, OnRecyclerViewItemClickListener listener) {
         this.context = context;
@@ -45,7 +46,7 @@ public class CustomLinearRecyclerViewAdapter extends RecyclerView.Adapter<Custom
         holder.text_rating.setText(String.valueOf(moviesCollectionDetailsList.get(i).getVoteAverage()));
 
         //add poster image url into imageUrl.
-        String image_url = "https://image.tmdb.org/t/p/original/" + moviesCollectionDetailsList.get(i).getPosterPath();
+        String image_url = CommonUtils.IMAGE_URL + moviesCollectionDetailsList.get(i).getPosterPath();
 
         //show it to user.
         Glide.with(context).load(image_url).into(holder.imageView);

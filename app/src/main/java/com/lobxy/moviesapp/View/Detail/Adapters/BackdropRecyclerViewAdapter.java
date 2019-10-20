@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.View.Detail.Model.Backdrop;
+import com.lobxy.moviesapp.utils.CommonUtils;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class BackdropRecyclerViewAdapter extends RecyclerView.Adapter<BackdropRe
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        String url = "https://image.tmdb.org/t/p/original/" + posterList.get(position).getFilePath();
+        String url = CommonUtils.IMAGE_URL + posterList.get(position).getFilePath();
         Glide.with(context).load(url).into(holder.imageView);
     }
 

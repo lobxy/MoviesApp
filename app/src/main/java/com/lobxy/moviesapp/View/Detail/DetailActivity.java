@@ -24,6 +24,7 @@ import com.lobxy.moviesapp.View.Detail.Model.Backdrop;
 import com.lobxy.moviesapp.View.Detail.Model.Cast;
 import com.lobxy.moviesapp.View.Detail.Model.MovieSingleDetail;
 import com.lobxy.moviesapp.View.Home.Model.MoviesCollectionDetails;
+import com.lobxy.moviesapp.utils.CommonUtils;
 
 import java.util.List;
 
@@ -151,7 +152,7 @@ public class DetailActivity extends AppCompatActivity {
         text_status.setText(status);
         text_runtime.setText(runtime + " mins");
 
-        String posterUrl = "https://image.tmdb.org/t/p/original/" + response.getPosterPath();
+        String posterUrl = CommonUtils.IMAGE_URL + response.getPosterPath();
         Glide.with(this).load(posterUrl).into(image_poster);
 
         setPostersRecyclerView(backdropList);
