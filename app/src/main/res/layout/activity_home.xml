@@ -13,29 +13,53 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
+            app:contentInsetStart="0dp"
+            app:contentInsetLeft="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize">
 
-            <ImageButton
-                android:id="@+id/home_button_movies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="center"
-                android:src="@drawable/ic_movie_placeholder" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/home_button_series"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/ic_movie" />
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/home_search_bar"
+                    android:layout_centerInParent="true"
+                    android:layoutDirection="rtl"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="match_parent" />
 
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/home_search_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end" />
+                <LinearLayout
+                    android:id="@+id/toolbar_home_categories"
+                    android:orientation="horizontal"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:id="@+id/home_button_movies"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_movie_placeholder" />
+
+                    <View
+                        android:background="#ccc"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent" />
+
+                    <ImageButton
+                        android:id="@+id/home_button_series"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_movie" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 

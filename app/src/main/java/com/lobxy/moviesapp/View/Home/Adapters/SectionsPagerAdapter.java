@@ -41,8 +41,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public void setupFragments(Fragment fragment, String title) {
         fragmentList.add(fragment);
         titleList.add(title);
-
     }
-
 
 }

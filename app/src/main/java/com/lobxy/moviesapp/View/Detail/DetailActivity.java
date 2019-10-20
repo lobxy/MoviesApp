@@ -1,6 +1,5 @@
 package com.lobxy.moviesapp.View.Detail;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,10 +8,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.lobxy.moviesapp.R;
 import com.lobxy.moviesapp.Retrofit.RetrofitClientInstance;
 import com.lobxy.moviesapp.Retrofit.RetrofitServices;
@@ -39,6 +40,7 @@ public class DetailActivity extends AppCompatActivity {
     private RecyclerView castRecyclerView;
 
     private ImageView image_poster;
+
     //hide when data not found.
     private TextView text_similar_movies;
     private TextView text_cast;
@@ -49,17 +51,18 @@ public class DetailActivity extends AppCompatActivity {
     private TextView text_runtime;
     private TextView text_genre;
 
-    private ProgressDialog dialog;
+    private ShimmerFrameLayout shimmerFrameLayout;
+
+    private ConstraintLayout main_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        dialog = new ProgressDialog(this);
-        dialog.setMessage("Working...");
-        dialog.setCancelable(false);
-        dialog.setInverseBackgroundForced(false);
+        shimmerFrameLayout = findViewById(R.id.detail_shimmer);
+
+        main_view = findViewById(R.id.detail_main_view);
 
         postersRecyclerView = findViewById(R.id.detail_recycler_images);
         castRecyclerView = findViewById(R.id.detail_recycler_cast);
@@ -76,20 +79,20 @@ public class DetailActivity extends AppCompatActivity {
         text_status = findViewById(R.id.detail_text_status);
         text_runtime = findViewById(R.id.detail_text_runtime);
 
+        shimmerFrameLayout.startShimmer();
+
     }
 
     private void getPassedData() {
         int movieId = getIntent().getIntExtra("MovieId", 0);
-        if (movieId != 0) {
-            dialog.show();
 
+        if (movieId != 0) {
             //get movie details.
             RetrofitClientInstance clientInstance = RetrofitServices.getRetrofitInstance().create(RetrofitClientInstance.class);
             Call<MovieSingleDetail> call = clientInstance.getMovieDetails(movieId, getResources().getString(R.string.API_KEY), "images,credits,similar");
             call.enqueue(new Callback<MovieSingleDetail>() {
                 @Override
                 public void onResponse(Call<MovieSingleDetail> call, Response<MovieSingleDetail> response) {
-                    dialog.dismiss();
                     if (response.code() == 200) {
                         handleData(response.body());
                     } else if (response.code() == 401) {
@@ -100,11 +103,14 @@ public class DetailActivity extends AppCompatActivity {
                         Toast.makeText(DetailActivity.this, "Internal error", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, "onResponse: API Error code not found");
                     }
+
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    main_view.setVisibility(View.VISIBLE);
                 }
 
                 @Override
                 public void onFailure(Call<MovieSingleDetail> call, Throwable t) {
-                    dialog.dismiss();
                     Toast.makeText(DetailActivity.this, "API response failed", Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "onFailure: API response failed: " + t.getMessage());
                 }
@@ -201,6 +207,18 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    protected void onPause() {
+        shimmerFrameLayout.stopShimmer();
+        super.onPause();
     }
 
 }

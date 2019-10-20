@@ -7,4 +7,8 @@
     <color name="colorSurface">#121212</color>
     <color name="colorTextGrey">#242424</color>
     <color name="colorTextWhite">#ffffff</color>
+
+
+    <color name="colorPlaceholder">#ccc</color>
+
 </resources>
